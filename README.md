@@ -7,5 +7,7 @@ This is a polls app build using Django.This app focuses on creating a poll elect
 Technology Stack:
 
 Front-end: Bootstrap 3
+
 Back-end: Django
+
 Database: dbsqlite3
