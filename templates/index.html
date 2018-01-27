@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %} Home | Polls-app {% endblock title %} {% block content %}
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="fa fa-line-chart"></span> Choose your poll</h3>
+    </div>
+    <div class="panel-body">
+         {% if latest %}
+        <ul class="list-group">
+             {% for question in latest %}
+            <li class="list-group-item">
+                
+                    <label>
+                        <a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a>
+                    </label>
+                
+            </li>
+             {% endfor %}
+            
+        </ul>
+         {% else %}
+        <p>Oops!!!No polls are available.Contact your administrator</p>
+        {% endif %}
+    </div>
+    
+</div>
+{% endblock content %} 

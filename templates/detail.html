@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+  Polls | Polls-app
+{% endblock title %}
+{% block content %}
+         {% if error_message %}
+        <p>
+            <strong>{{ error_message }}</strong>
+        </p>{%endif%}
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="fa fa-line-chart"></span> {{ question.question_text}}</h3>
+            </div>
+            <div class="panel-body">
+                <center>
+                <form action="{% url 'polls:vote' question.id%}" method="post">
+                    {% csrf_token %} {% for choice in question.choice_set.all %}
+                    <input type="radio" name="choice" id="choice {{forloop.counter }}" value="{{ choice.id }}" />
+                    <label for="choice {{forloop.counter }}">{{choice.choice_text }}</label><br>
+                    {% endfor %}
+                    <input type="submit" name="" value="Vote"><br>
+                    <a href="{% url 'polls:result' question.id %}" class="small">View Result</a>
+                </center>
+            </div>
+        </div>
+{% endblock content %}
